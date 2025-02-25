@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Mevaki</title>
+</head>
+<body>
+   <header>
+       <nav class="header__container">
+           <div class="auth__links">
+               <a href="#">Cadastre-se</a>
+               <span>|</span>
+               <a href="#">Login</a>
+           </div> 
+       </nav>
+
+       <div class="container">
+           <div class="logo">MEVAKI</div>
+           <nav>
+               <ul>
+                   <li><a href="#">INÍCIO</a></li>
+                   <li><a href="#">PRODUTOS</a></li>
+                   <li><a href="#" id="whatsapp-link">CONTATO</a></li>
+                   <li><a href="#">PERGUNTAS FREQUENTES</a></li>
+               </ul>
+           </nav>
+           <div class="search-cart">
+               <div class="search-bar">
+                   <label for="search-input" class="visually-hidden"></label>
+                   <input type="text" id="search-input" placeholder="Buscar">
+                   <i class="fas fa-search"></i>
+               </div>
+               <div class="cart">
+                  <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                   <span>R$0,00</span>
+               </div>
+           </div>
+       </div>
+   </header>  
+
+   <main>
+       <div class="container2">
+           <!-- <div class="add-product-container">
+               <input type="text" id="imagem-url" placeholder="URL da imagem" class="input-url">
+               <button onclick="adicionarProduto()" class="add-product-button">Adicionar Produto</button>
+           </div> -->
+
+           <div class="carousel">
+               <button class="carousel-button left" onclick="moveCarousel(-1)" aria-label="Anterior">←</button>
+               <div class="carousel-content" id="carousel"></div>
+               <button class="carousel-button right" onclick="moveCarousel(1)" aria-label="Próximo">→</button>
+           </div>
+
+           <h1 class="desc">Destaques da Semana</h1>
+           <div class="product-grid">
+            <div class="product-card">
+                <img src="images/top-marrom.png" alt="Top-marrom" class="product-image">
+                <h2>Top Marrom</h2>
+                <p>R$ 99,98</p>
+                <p>12X R$ 8,32</p>
+                <button>COMPRAR</button>
+            </div>
+            <div class="product-card">
+                <img src="images/vestido-preto.png" alt="vestido-preto" class="product-image">
+                <h2>Vestido preto</h2>
+                <p>R$ 99,98</p>
+                <p>12X R$ 8,32</p>
+                <button>COMPRAR</button>
+            </div>
+            <div class="product-card">
+                <img src="url_da_imagem_cropped.jpg" alt="CROPPED" class="product-image">
+                <h2>CROPPED</h2>
+                <p>R$ 99,98</p>
+                <p>12X R$ 8,32</p>
+                <button>COMPRAR</button>
+            </div>
+            <div class="product-card">
+                <img src="url_da_imagem_cropped.jpg" alt="CROPPED" class="product-image">
+                <h2>CROPPED</h2>
+                <p>R$ 99,98</p>
+                <p>12X R$ 8,32</p>
+                <button>COMPRAR</button>
+            </div>
+            <div class="product-card">
+                <img src="url_da_imagem_cropped.jpg" alt="CROPPED" class="product-image">
+                <h2>CROPPED</h2>
+                <p>R$ 99,98</p>
+                <p>12X R$ 8,32</p>
+                <button>COMPRAR</button>
+            </div>
+            <div class="product-card">
+                <img src="url_da_imagem_cropped.jpg" alt="CROPPED" class="product-image">
+                <h2>CROPPED</h2>
+                <p>R$ 99,98</p>
+                <p>12X R$ 8,32</p>
+                <button>COMPRAR</button>
+            </div>
+        </div>        
+           <button class="view-all-button">VER TODOS OS PRODUTOS</button>
+       </div>
+   </main>
+
+   <footer>
+       <p>&copy; 2025 Mevaki. Todos os direitos reservados.</p>
+   </footer>
+
+   <script src="script.js"></script>
+   <!-- Modal do QR Code -->
+   <div id="qr-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Entre em contato pelo WhatsApp</h2>
+        <img src="images/qr-code.png" alt="QR Code do WhatsApp">
+    </div>
+</div>
+</body>
+</html>
