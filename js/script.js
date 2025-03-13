@@ -212,12 +212,34 @@ const products = [
         name: "Curso cobranças recorrentes",
         price: 99.00,
         description: "Aprenda a gerenciar cobranças recorrentes de forma eficiente.",
-        colors: ["#FF0000", "#00FF00", "#0000FF"], // Cores disponíveis
-        sizes: ["P", "M", "G", "GG"], // Tamanhos disponíveis
+        colors: ["#FF0000", "#00FF00", "#0000FF"],
+        sizes: ["P", "M", "G", "GG"],
         images: {
-            "#FF0000": "img/image1-red.jpg", // Imagem para a cor vermelha
-            "#00FF00": "img/image1-green.jpg", // Imagem para a cor verde
-            "#0000FF": "img/image1-blue.jpg", // Imagem para a cor azul
+            "#FF0000": "img/image1-red.jpg",
+            "#00FF00": "img/image1-green.jpg",
+            "#0000FF": "img/image1-blue.jpg",
+        },
+    },
+    {
+        name: "Curso de Marketing Digital",
+        price: 120.00,
+        description: "Domine as estratégias de marketing digital para alavancar seus negócios.",
+        colors: ["#FFA500", "#800080"],
+        sizes: ["Único"],
+        images: {
+            "#FFA500": "img/image2-orange.jpg",
+            "#800080": "img/image2-purple.jpg",
+        },
+    },
+    {
+        name: "Curso de Fotografia",
+        price: 150.00,
+        description: "Aprenda técnicas avançadas de fotografia.",
+        colors: ["#000000", "#FFFFFF"],
+        sizes: ["P", "M", "G"],
+        images: {
+            "#000000": "img/image3-black.jpg",
+            "#FFFFFF": "img/image3-white.jpg",
         },
     },
     // Adicione mais produtos aqui
