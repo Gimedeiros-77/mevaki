@@ -4,6 +4,8 @@ let cartModal = document.getElementById("cartModal");
 let cartItemsContainer = document.getElementById("cartItems");
 let cartSubtotal = document.getElementById("cartSubtotal");
 let closeModal = document.querySelector(".close");
+let confirmPurchaseBtn = document.getElementById("confirmPurchase");
+let addressForm = document.getElementById("addressForm");
 var MenuItens = document.getElementById("MenuItens");
 
 MenuItens.style.maxHeight = "0px";
@@ -25,6 +27,7 @@ function openCartModal() {
 // Função para fechar o modal do carrinho
 function closeCartModal() {
     cartModal.style.display = "none";
+    addressForm.style.display = "none"; // Esconde o formulário de endereço ao fechar o modal
 }
 
 // Função para adicionar produto ao carrinho
@@ -56,53 +59,107 @@ function updateCartDisplay() {
     cartSubtotal.textContent = subtotal.toFixed(2);
 }
 
-// Função para confirmar a compra
-function confirmPurchase() {
+// Função para exibir o formulário de endereço
+function showAddressForm() {
+    addressForm.style.display = "block"; // Exibe o formulário de endereço
+}
+
+// Evento para o botão "Confirmar Compra"
+confirmPurchaseBtn.addEventListener("click", function (event) {
+    event.preventDefault(); // Evita o comportamento padrão do botão
     if (cart.length === 0) {
         alert("Seu carrinho está vazio!");
     } else {
-        // Monta a mensagem com os itens e o subtotal
-        let message = "Olá, gostaria de confirmar a seguinte compra:\n\n";
-        cart.forEach((item, index) => {
-            message += `${item.name} - R$ ${item.price.toFixed(2)}\n`;
-        });
-        message += `\nSubtotal: R$ ${cartSubtotal.textContent}\n\n`;
-        message += "Por favor, confirme a disponibilidade e os detalhes para pagamento.";
-
-        // Codifica a mensagem para uso na URL
-        const encodedMessage = encodeURIComponent(message);
-
-        // Número de telefone da dona da loja (substitua pelo número correto)
-        const phoneNumber = "5517981397488"; // Exemplo: 55 (Brasil) + DDD + Número
-
-        // Gera o link do WhatsApp
-        const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-
-        // Redireciona o usuário para o WhatsApp
-        window.open(whatsappLink, "_blank");
-
-        // Limpa o carrinho
-        cart = [];
-        updateCartDisplay();
-        closeCartModal();
+        showAddressForm(); // Exibe o formulário de endereço
     }
-}
-
-// Eventos
-document.querySelector(".cart-btn").addEventListener("click", function (event) {
-    event.preventDefault();
-    openCartModal();
 });
 
+// Função para buscar o endereço pelo CEP
+function buscarEndereco() {
+    const cep = document.getElementById("cep").value.replace(/\D/g, ''); // Remove caracteres não numéricos
+
+    if (cep.length !== 8) {
+        alert("CEP inválido. Digite um CEP com 8 dígitos.");
+        return;
+    }
+
+    // Faz a requisição à API do ViaCEP
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.erro) {
+                alert("CEP não encontrado.");
+                return;
+            }
+
+            // Preenche os campos do formulário
+            document.getElementById("rua").value = data.logradouro;
+            document.getElementById("cidade").value = data.localidade;
+            document.getElementById("estado").value = data.uf;
+        })
+        .catch(error => {
+            console.error("Erro ao buscar o CEP:", error);
+            alert("Erro ao buscar o CEP. Tente novamente.");
+        });
+}
+
+// Evento para buscar o CEP ao clicar no botão
+document.getElementById("searchCep").addEventListener("click", buscarEndereco);
+
+// Evento para buscar o CEP ao pressionar Enter no campo de CEP
+document.getElementById("cep").addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+        event.preventDefault(); // Evita o comportamento padrão do formulário
+        buscarEndereco();
+    }
+});
+
+// Evento para enviar o formulário de endereço
+document.getElementById("deliveryForm").addEventListener("submit", (event) => {
+    event.preventDefault(); // Evita o envio do formulário
+
+    const numero = document.getElementById("numero").value;
+    if (!numero) {
+        alert("Por favor, insira o número.");
+        return;
+    }
+
+    // Captura os dados do formulário
+    const endereco = {
+        cep: document.getElementById("cep").value,
+        rua: document.getElementById("rua").value,
+        cidade: document.getElementById("cidade").value,
+        estado: document.getElementById("estado").value,
+        numero: numero,
+        complemento: document.getElementById("complemento").value,
+        apartamento: document.getElementById("apartamento").value,
+    };
+
+    // Exibe os dados no console (ou envia para o backend)
+    console.log("Endereço de entrega:", endereco);
+    alert("Endereço confirmado com sucesso!");
+
+    // Limpa o carrinho e fecha o modal
+    cart = [];
+    updateCartDisplay();
+    closeCartModal();
+});
+
+// Evento para fechar o modal ao clicar no "X"
 closeModal.addEventListener("click", closeCartModal);
 
+// Evento para fechar o modal ao clicar fora dele
 window.addEventListener("click", function (event) {
     if (event.target === cartModal) {
         closeCartModal();
     }
 });
 
-document.getElementById("confirmPurchase").addEventListener("click", confirmPurchase);
+// Evento para abrir o modal do carrinho ao clicar no ícone do carrinho
+document.querySelector(".cart-btn").addEventListener("click", function (event) {
+    event.preventDefault(); // Evita o comportamento padrão do link
+    openCartModal();
+});
 
 // Variáveis globais para o modal de produto
 let productModal = document.getElementById("productModal");

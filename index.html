@@ -190,7 +190,7 @@
         </div>
     </footer>
 
-    <!-- Modal do Carrinho -->
+<!-- Modal do Carrinho -->
 <div id="cartModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
@@ -200,6 +200,36 @@
         </div>
         <p><strong>Subtotal: R$ <span id="cartSubtotal">0.00</span></strong></p>
         <button id="confirmPurchase" class="btn">Confirmar Compra</button>
+
+        <!-- Formulário de Endereço (inicialmente escondido) -->
+        <div id="addressForm" style="display: none;">
+            <h2>Endereço de Entrega</h2>
+            <form id="deliveryForm">
+                <label for="cep">CEP:</label>
+                <input type="text" id="cep" name="cep" placeholder="Digite seu CEP" required>
+                <button type="button" id="searchCep">Buscar CEP</button>
+
+                <label for="rua">Rua:</label>
+                <input type="text" id="rua" name="rua" placeholder="Rua" readonly>
+
+                <label for="cidade">Cidade:</label>
+                <input type="text" id="cidade" name="cidade" placeholder="Cidade" readonly>
+
+                <label for="estado">Estado:</label>
+                <input type="text" id="estado" name="estado" placeholder="Estado" readonly>
+
+                <label for="numero">Número:</label>
+                <input type="text" id="numero" name="numero" placeholder="Número" required>
+
+                <label for="complemento">Complemento:</label>
+                <input type="text" id="complemento" name="complemento" placeholder="Complemento">
+
+                <label for="apartamento">Número do Apartamento:</label>
+                <input type="text" id="apartamento" name="apartamento" placeholder="Número do Apartamento">
+
+                <button type="submit">Confirmar Endereço</button>
+            </form>
+        </div>
     </div>
 </div>
 
