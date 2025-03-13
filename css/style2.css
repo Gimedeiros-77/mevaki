@@ -433,24 +433,36 @@ ul{
 /* Estilos do Modal de Produto */
 #productModal .modal-content {
     text-align: center;
+    padding: 20px;
 }
 
-#colorOptions {
+#productModalDescription {
+    font-size: 1rem;
+    color: var(--cor-fonte-corpo);
+    margin: 15px 0;
+}
+
+#sizeOptions, #colorOptions {
     margin: 20px 0;
 }
 
-.color-option {
+.size-option, .color-option {
     display: inline-block;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     margin: 5px;
     border: 2px solid #ccc;
-    border-radius: 50%;
+    border-radius: 5px;
     cursor: pointer;
+    text-align: center;
+    line-height: 40px;
+    font-size: 0.9rem;
 }
 
-.color-option.selected {
+.size-option.selected, .color-option.selected {
     border-color: var(--cor-padrao);
+    background-color: var(--cor-padrao-hover);
+    color: var(--cor-fonte);
 }
 
 #addToCartFromModal {

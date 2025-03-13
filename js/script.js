@@ -108,25 +108,31 @@ document.getElementById("confirmPurchase").addEventListener("click", confirmPurc
 let productModal = document.getElementById("productModal");
 let productModalImage = document.getElementById("productModalImage");
 let productModalTitle = document.getElementById("productModalTitle");
+let productModalDescription = document.getElementById("productModalDescription");
 let productModalPrice = document.getElementById("productModalPrice");
 let colorOptionsContainer = document.getElementById("colorOptions");
+let sizeOptionsContainer = document.getElementById("sizeOptions");
 let addToCartFromModalBtn = document.getElementById("addToCartFromModal");
 
 let selectedProduct = null; // Armazena o produto selecionado
 let selectedColor = null; // Armazena a cor selecionada
+let selectedSize = null; // Armazena o tamanho selecionado
 
 // Função para abrir o modal do produto
 function openProductModal(product) {
     selectedProduct = product;
     selectedColor = product.colors[0]; // Seleciona a primeira cor por padrão
+    selectedSize = product.sizes[0]; // Seleciona o primeiro tamanho por padrão
 
     // Atualiza o conteúdo do modal
     productModalTitle.textContent = product.name;
     productModalImage.src = product.images[selectedColor];
+    productModalDescription.textContent = product.description;
     productModalPrice.textContent = product.price.toFixed(2);
 
-    // Limpa as opções de cor anteriores
+    // Limpa as opções de cor e tamanho anteriores
     colorOptionsContainer.innerHTML = "";
+    sizeOptionsContainer.innerHTML = "";
 
     // Adiciona as opções de cor
     product.colors.forEach(color => {
@@ -135,6 +141,15 @@ function openProductModal(product) {
         colorOption.style.backgroundColor = color;
         colorOption.addEventListener("click", () => selectColor(color));
         colorOptionsContainer.appendChild(colorOption);
+    });
+
+    // Adiciona as opções de tamanho
+    product.sizes.forEach(size => {
+        const sizeOption = document.createElement("div");
+        sizeOption.classList.add("size-option");
+        sizeOption.textContent = size;
+        sizeOption.addEventListener("click", () => selectSize(size));
+        sizeOptionsContainer.appendChild(sizeOption);
     });
 
     // Abre o modal
@@ -153,13 +168,26 @@ function selectColor(color) {
     event.target.classList.add("selected");
 }
 
+// Função para selecionar um tamanho
+function selectSize(size) {
+    selectedSize = size;
+
+    // Destaca o tamanho selecionado
+    document.querySelectorAll(".size-option").forEach(option => {
+        option.classList.remove("selected");
+    });
+    event.target.classList.add("selected");
+}
+
 // Função para adicionar o produto ao carrinho a partir do modal
 addToCartFromModalBtn.addEventListener("click", () => {
-    if (selectedProduct && selectedColor) {
-        const productName = `${selectedProduct.name} (${selectedColor})`;
+    if (selectedProduct && selectedColor && selectedSize) {
+        const productName = `${selectedProduct.name} (${selectedColor}, Tamanho: ${selectedSize})`;
         addToCart(productName, selectedProduct.price);
         alert(`${productName} foi adicionado ao carrinho!`);
         closeProductModal();
+    } else {
+        alert("Por favor, selecione uma cor e um tamanho.");
     }
 });
 
@@ -183,9 +211,11 @@ const products = [
     {
         name: "Curso cobranças recorrentes",
         price: 99.00,
+        description: "Aprenda a gerenciar cobranças recorrentes de forma eficiente.",
         colors: ["#FF0000", "#00FF00", "#0000FF"], // Cores disponíveis
+        sizes: ["P", "M", "G", "GG"], // Tamanhos disponíveis
         images: {
-            "#FF0000": "img/image3.jpg", // Imagem para a cor vermelha
+            "#FF0000": "img/image1-red.jpg", // Imagem para a cor vermelha
             "#00FF00": "img/image1-green.jpg", // Imagem para a cor verde
             "#0000FF": "img/image1-blue.jpg", // Imagem para a cor azul
         },
