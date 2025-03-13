@@ -1,0 +1,139 @@
+/* Ajustes para telas grandes */
+@media only screen and (min-width: 1200px) {
+    .container {
+        width: 85%;
+    }
+
+    .col-2 h1 {
+        font-size: 4rem;
+        line-height: 4.5rem;
+    }
+
+    .col-2 p {
+        font-size: 1.2rem;
+    }
+
+    .col-4 {
+        flex-basis: 20%;
+    }
+
+    .rodape-col-1, .rodape-col-2, .rodape-col-3, .rodape-col-4 {
+        flex-basis: 25%;
+    }
+}
+
+/* Ajustes para tablets */
+@media only screen and (max-width: 1024px) and (min-width: 769px) {
+    .container {
+        width: 90%;
+    }
+
+    .col-2 h1 {
+        font-size: 2.5rem;
+        line-height: 3rem;
+    }
+
+    .col-2 p {
+        font-size: 1rem;
+    }
+
+    .col-3, .col-4 {
+        flex-basis: 45%;
+    }
+
+    .rodape-col-1, .rodape-col-2, .rodape-col-3, .rodape-col-4 {
+        flex-basis: 50%;
+    }
+
+    .menu-celular {
+        display: none; /* Mantém o menu de navegação visível em tablets */
+    }
+}
+
+/* Ajustes para celulares */
+@media only screen and (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    .col-2 h1 {
+        font-size: 2rem;
+        line-height: 2.5rem;
+    }
+
+    .col-2 p {
+        font-size: 0.9rem;
+    }
+
+    .col-3, .col-4 {
+        flex-basis: 100%;
+    }
+
+    .rodape-col-1, .rodape-col-2, .rodape-col-3, .rodape-col-4 {
+        flex-basis: 100%;
+        text-align: center;
+    }
+
+    .menu-celular {
+        display: block; /* Mostra o ícone do menu para celulares */
+    }
+
+    nav ul {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s;
+    }
+
+    nav ul.active {
+        max-height: 300px; /* Ajuste conforme necessário */
+    }
+
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .banner .linha {
+        margin-top: 2rem;
+    }
+
+    .col-2 img {
+        padding: 1.5rem 0;
+    }
+
+    .titulo::after {
+        width: 3rem;
+    }
+
+    .depoimentos .col-3 {
+        padding: 1.5rem 0.5rem;
+    }
+
+    .depoimentos .col-3 img {
+        width: 2.5rem;
+    }
+
+    .depoimento-icone {
+        font-size: 1.5rem;
+    }
+
+    .col-3 p {
+        font-size: 0.9rem;
+    }
+
+    .col-3 h3 {
+        font-size: 0.9rem;
+    }
+
+    .col-5 {
+        width: 8rem;
+    }
+
+    .app-logo img {
+        width: 100px;
+    }
+
+    .cart-btn {
+        font-size: 35px;
+    }
+}
