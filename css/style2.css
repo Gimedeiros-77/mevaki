@@ -521,3 +521,8 @@ ul{
 #addressForm button:hover {
     background-color: var(--cor-btn-hover);
 }
+
+.rodape-col-4 a {
+    text-decoration: none;
+    color: var(--cor-fonte);
+}

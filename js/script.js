@@ -309,3 +309,5 @@ document.querySelectorAll(".col-4").forEach((productElement, index) => {
         openProductModal(products[index]);
     });
 });
+
+//Função para abrir links do footer
