@@ -26,8 +26,9 @@ body, html {
     font-family: 'Poppins',sans-serif;
 }
 
-.logo img {
+.logo{
     max-width: 100px; /* Garante que a logo não fique grande demais */
+    color: var(--cor-fonte);
 }
 
 .banner{
