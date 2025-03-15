@@ -22,12 +22,22 @@ function menucelular() {
 function openCartModal() {
     cartModal.style.display = "block";
     updateCartDisplay();
+    // Força o navegador a aplicar a animação
+    setTimeout(() => {
+        cartModal.querySelector(".modal-content").style.opacity = "1";
+        cartModal.querySelector(".modal-content").style.transform = "translateY(0)";
+    }, 10);
 }
 
 // Função para fechar o modal do carrinho
 function closeCartModal() {
-    cartModal.style.display = "none";
-    addressForm.style.display = "none"; // Esconde o formulário de endereço ao fechar o modal
+    const modalContent = cartModal.querySelector(".modal-content");
+    modalContent.style.opacity = "0";
+    modalContent.style.transform = "translateY(20px)";
+    setTimeout(() => {
+        cartModal.style.display = "none";
+        addressForm.style.display = "none"; // Esconde o formulário de endereço ao fechar o modal
+    }, 300); // Tempo da animação (0.3s)
 }
 
 // Função para adicionar produto ao carrinho
@@ -211,6 +221,11 @@ function openProductModal(product) {
 
     // Abre o modal
     productModal.style.display = "block";
+    // Força o navegador a aplicar a animação
+    setTimeout(() => {
+        productModal.querySelector(".modal-content").style.opacity = "1";
+        productModal.querySelector(".modal-content").style.transform = "translateY(0)";
+    }, 10);
 }
 
 // Função para selecionar uma cor
@@ -250,9 +265,13 @@ addToCartFromModalBtn.addEventListener("click", () => {
 
 // Função para fechar o modal do produto
 function closeProductModal() {
-    productModal.style.display = "none";
+    const modalContent = productModal.querySelector(".modal-content");
+    modalContent.style.opacity = "0";
+    modalContent.style.transform = "translateY(20px)";
+    setTimeout(() => {
+        productModal.style.display = "none";
+    }, 300); // Tempo da animação (0.3s)
 }
-
 // Evento para fechar o modal ao clicar no "X"
 document.querySelector("#productModal .close").addEventListener("click", closeProductModal);
 
