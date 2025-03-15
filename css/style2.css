@@ -345,7 +345,7 @@ ul{
 .cart-btn{
     display: flex;
     align-items: center;
-    color: var(--cor-btn-hover);
+    color: var(--cor-fonte);
     font-size: 45px;
     margin-right: 20px;
 }
@@ -521,4 +521,54 @@ ul{
 
 #addressForm button:hover {
     background-color: var(--cor-btn-hover);
+}
+
+.rodape-col-4 a {
+    text-decoration: none;
+    color: var(--cor-fonte);
+}
+
+/* Animação de fade-in e slide-up */
+/* Animação de fade-in e slide-up */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Aplica a animação ao modal do carrinho e ao modal do produto */
+.modal-content {
+    animation: fadeInSlideUp 0.5s ease-out;
+}
+
+/* Estilos para o modal */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro */
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    opacity: 0; /* Inicia invisível */
+    transform: translateY(20px); /* Inicia 20px abaixo */
+    transition: opacity 0.8s ease-out, transform 0.3s ease-out; /* Transição suave */
 }
