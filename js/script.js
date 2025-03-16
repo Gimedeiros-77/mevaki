@@ -149,10 +149,11 @@ document.getElementById("deliveryForm").addEventListener("submit", (event) => {
     console.log("Endereço de entrega:", endereco);
     alert("Endereço confirmado com sucesso!");
 
-    // Limpa o carrinho e fecha o modal
-    cart = [];
-    updateCartDisplay();
-    closeCartModal();
+    // Fecha o modal de endereço
+    addressForm.style.display = "none";
+
+    // Mantém o modal do carrinho aberto
+    cartModal.style.display = "block";
 });
 
 // Evento para fechar o modal ao clicar no "X"
