@@ -330,3 +330,67 @@ document.querySelectorAll(".col-4").forEach((productElement, index) => {
 });
 
 //Função para abrir links do footer
+
+// Variáveis globais para o modal de criação de conta
+let accountModal = document.getElementById("accountModal");
+let closeAccountModal = document.getElementById("closeAccountModal");
+let accountForm = document.getElementById("accountForm");
+
+// Função para abrir o modal de criação de conta
+function openAccountModal() {
+    accountModal.style.display = "flex";
+    // Força o navegador a aplicar a animação
+    setTimeout(() => {
+        accountModal.querySelector(".modal-content").style.opacity = "1";
+        accountModal.querySelector(".modal-content").style.transform = "translateY(0)";
+    }, 10);
+}
+
+// Função para fechar o modal de criação de conta
+function closeAccountModalFunc() {
+    const modalContent = accountModal.querySelector(".modal-content");
+    modalContent.style.opacity = "0";
+    modalContent.style.transform = "translateY(-20px)";
+    setTimeout(() => {
+        accountModal.style.display = "none";
+    }, 300); // Tempo da animação (0.3s)
+}
+
+// Evento para fechar o modal ao clicar no "X"
+closeAccountModal.addEventListener("click", closeAccountModalFunc);
+
+// Evento para fechar o modal ao clicar fora dele
+window.addEventListener("click", function (event) {
+    if (event.target === accountModal) {
+        closeAccountModalFunc();
+    }
+});
+
+// Evento para enviar o formulário de criação de conta
+accountForm.addEventListener("submit", function (event) {
+    event.preventDefault(); // Evita o envio do formulário
+
+    const username = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (password !== confirmPassword) {
+        alert("As senhas não coincidem!");
+        return;
+    }
+
+    // Aqui você pode adicionar a lógica para enviar os dados para o backend
+    console.log("Dados da conta:", { username, email, password });
+    alert("Conta criada com sucesso!");
+
+    // Limpa o formulário e fecha o modal
+    accountForm.reset();
+    closeAccountModalFunc();
+});
+
+// Evento para abrir o modal de criação de conta ao clicar em "Minha Conta"
+document.querySelector(".account-btn").addEventListener("click", function (event) {
+    event.preventDefault(); // Evita o comportamento padrão do link
+    openAccountModal();
+});
